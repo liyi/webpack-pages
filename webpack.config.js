@@ -61,7 +61,7 @@ module.exports = (env, argv) => {
           ]
         },
         {
-          test: /\.js$/i,
+          test: /\.jsx?$/i,
           include: [path.resolve('src')],
           use: [
             {
@@ -69,7 +69,9 @@ module.exports = (env, argv) => {
               options: {
                 sourceMaps: debug,
                 presets: ['@babel/preset-env'],
-                plugins: []
+                plugins: [
+                  ['@babel/plugin-transform-react-jsx']
+                ]
               }
             }
           ]
