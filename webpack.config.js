@@ -18,6 +18,9 @@ module.exports = (env, argv) => {
     output: {
       path: path.resolve(__dirname, 'dist')
     },
+    resolve: {
+      extensions: ['.js', '.jsx', '.json']
+    },
     module: {
       rules: [
         {
@@ -72,6 +75,33 @@ module.exports = (env, argv) => {
                 plugins: [
                   ['@babel/plugin-transform-react-jsx']
                 ]
+              }
+            },
+            {
+              loader: 'eslint-loader',
+              options: {
+                root: true,
+                useEslintrc: false,
+                baseConfig: {
+                  extends: ['standard', 'plugin:react/recommended'],
+                  settings: {
+                    react: {
+                      version: '*'
+                    }
+                  }
+                },
+                parser: 'babel-eslint',
+                parserOptions: {
+                  sourceType: 'module'
+                },
+                formatter: require('eslint-friendly-formatter'),
+                env: {
+                  browser: true
+                },
+                rules: {
+                  'prefer-const': 'off',
+                  'react/react-in-jsx-scope': 'off'
+                }
               }
             }
           ]
