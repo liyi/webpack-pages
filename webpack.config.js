@@ -123,7 +123,7 @@ module.exports = (env, argv) => {
     },
     plugins: [
       ...config.map(v => new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, 'template.html'),
+        template: v.template || path.resolve(__dirname, 'template.html'),
         filename: v.name + '.html',
         title: v.title,
         inlineSource: '\.(js|css)$',
