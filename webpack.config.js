@@ -101,7 +101,9 @@ module.exports = (env, argv) => {
                 rules: {
                   'prefer-const': 'off',
                   'react/react-in-jsx-scope': 'off',
-                  'no-unused-vars': 'warn'
+                  'no-unused-vars': 'warn',
+                  'eol-last': 'warn',
+                  'new-cap': 'off'
                 }
               }
             }
