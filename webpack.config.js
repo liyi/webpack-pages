@@ -100,7 +100,8 @@ module.exports = (env, argv) => {
                 },
                 rules: {
                   'prefer-const': 'off',
-                  'react/react-in-jsx-scope': 'off'
+                  'react/react-in-jsx-scope': 'off',
+                  'no-unused-vars': 'warn'
                 }
               }
             }
@@ -122,6 +123,18 @@ module.exports = (env, argv) => {
       ]
     },
     plugins: [
+      ...(debug ? [
+        new HtmlWebpackPlugin({
+          template: path.resolve(__dirname, 'index.html'),
+          filename: 'index.html',
+          title: '目录',
+          minify: false,
+          inject: false,
+          chunks: [],
+          cache: false,
+          links: config.map(v => ({ title: v.title, href: v.name + '.html' }))
+        })
+      ] : []),
       ...config.map(v => new HtmlWebpackPlugin({
         template: v.template || path.resolve(__dirname, 'template.html'),
         filename: v.name + '.html',
