@@ -56,9 +56,11 @@ module.exports = (env, argv) => {
             {
               loader: 'sass-loader',
               options: {
+                implementation: require('sass'),
                 sourceMap: debug,
-                outputStyle: debug ? 'expanded' : 'compressed',
-                implementation: require('sass')
+                sassOptions: {
+                  outputStyle: debug ? 'expanded' : 'compressed'
+                }
               }
             }
           ]
